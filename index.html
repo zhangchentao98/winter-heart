@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冬将至 我于你</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+<style>
+*{margin:0;padding:0}
+body{background:#f5f0e6;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;}
+</style>
+</head>
+<body>
+<script>
+function setup(){
+  createCanvas(600,650);
+  background('#f5f0e6');
+  drawHeart(width/2, height/2+50, 0.9);
+  fill('#222');
+  textAlign(CENTER);
+  textFont('Microsoft YaHei');
+  textSize(24);
+  textStyle(BOLD);
+  text("冬将至 我于你", width/2, height/2+170);
+  fill('#555');
+  textSize(14);
+  textStyle(NORMAL);
+  text("立冬快乐，注意保暖 ❄️", width/2, height/2+220);
+  noLoop();
+}
+
+function drawHeart(cx, cy, size){
+  push();
+  translate(cx, cy);
+  fill('#ffccd5');
+  stroke('#ff4d6d');
+  strokeWeight(2);
+  beginShape();
+  let s = 180 * size;
+  vertex(0,0);
+  bezierVertex(-s*0.5, -s*0.5, -s, s*0.2, 0, s);
+  bezierVertex(s, s*0.2, s*0.5, -s*0.5, 0, 0);
+  endShape(CLOSE);
+  pop();
+}
+</script>
+</body>
+</html>
