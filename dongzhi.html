@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="冬将至，我与你。冬至降临，平安喜乐。">
+  <meta property="og:title" content="冬将至，我与你">
+  <meta property="og:description" content="冬至降临，平安喜乐，祝我祝你祝我们。">
+  <title>冬将至，我与你</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #000;
+    }
+
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #f4f4f4;
+      font-family: "KaiTi", "STKaiti", "Kaiti SC", "FZKai-Z03", "楷体", serif;
+    }
+
+    /* 横向画面在手机上居中显示，周围保留黑边，贴近参考图 */
+    .scene {
+      position: relative;
+      isolation: isolate;
+      width: min(100vw, 177.7778svh);
+      height: min(100svh, 56.25vw);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 49%, rgba(86, 86, 86, .38) 0%, rgba(30, 30, 30, .2) 22%, transparent 48%),
+        radial-gradient(ellipse at 50% 50%, #090909 0%, #020202 72%, #000 100%);
+    }
+
+    .scene::before {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 50%, transparent 0 35%, rgba(0, 0, 0, .28) 67%, rgba(0, 0, 0, .72) 100%),
+        radial-gradient(ellipse at 0% 50%, rgba(190, 190, 190, .08), transparent 22%),
+        radial-gradient(ellipse at 100% 50%, rgba(190, 190, 190, .08), transparent 22%);
+    }
+
+    .center-glow {
+      position: absolute;
+      z-index: 0;
+      left: 50%;
+      top: 48%;
+      width: 42%;
+      height: 54%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(195, 195, 195, .18), rgba(120, 120, 120, .08) 42%, transparent 72%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    #snow {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .title {
+      position: absolute;
+      z-index: 2;
+      top: 45%;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .13em;
+      width: 94%;
+      margin: 0;
+      transform: translate(-50%, -50%);
+      color: #f7f7f7;
+      font-family: "STXingkai", "华文行楷", "Xingkai SC", "KaiTi", "楷体", cursive, serif;
+      font-size: clamp(36px, 8.4vw, 158px);
+      font-weight: 400;
+      letter-spacing: .04em;
+      line-height: 1.25;
+      white-space: nowrap;
+      text-shadow: 0 0 9px rgba(255, 255, 255, .5), 0 0 34px rgba(255, 255, 255, .2);
+      -webkit-text-stroke: .35px rgba(255, 255, 255, .6);
+      animation: title-in 1.8s ease-out both, title-glow 4s ease-in-out 1.8s infinite alternate;
+    }
+
+    .title .gap { margin-left: .27em; }
+
+    .title span:nth-child(1) { transform: rotate(-8deg) translateY(-.02em); }
+    .title span:nth-child(2) { transform: rotate(4deg) translateY(.03em); }
+    .title span:nth-child(3) { transform: rotate(-3deg) translateY(-.04em); }
+    .title span:nth-child(4) { transform: rotate(3deg) translateY(.02em); }
+    .title span:nth-child(5) { transform: rotate(-5deg) translateY(-.03em); }
+    .title span:nth-child(6) { transform: rotate(5deg) translateY(.04em); }
+
+    .caption {
+      position: absolute;
+      z-index: 2;
+      top: 72%;
+      left: 50%;
+      width: 96%;
+      margin: 0;
+      transform: translateX(-50%);
+      color: rgba(205, 205, 205, .64);
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      font-size: clamp(11px, 1.55vw, 28px);
+      font-weight: 400;
+      letter-spacing: .12em;
+      line-height: 1.6;
+      text-align: center;
+      white-space: nowrap;
+      text-shadow: 0 1px 10px rgba(255, 255, 255, .12);
+      animation: caption-in 2.2s ease-out both;
+    }
+
+    @keyframes title-in {
+      from {
+        opacity: 0;
+        filter: blur(8px);
+        transform: translate(-50%, -46%);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @keyframes title-glow {
+      from {
+        text-shadow: 0 0 7px rgba(255,255,255,.35), 0 0 24px rgba(255,255,255,.12);
+      }
+      to {
+        text-shadow: 0 0 12px rgba(255,255,255,.7), 0 0 42px rgba(255,255,255,.28);
+      }
+    }
+
+    @keyframes caption-in {
+      from { opacity: 0; }
+      to { opacity: .95; }
+    }
+
+    @media (max-width: 420px) {
+      .title {
+        font-size: clamp(32px, 8.6vw, 42px);
+        gap: .08em;
+      }
+
+      .title .gap { margin-left: .16em; }
+
+      .caption {
+        font-size: 11px;
+        letter-spacing: .04em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="scene" aria-label="冬至祝福">
+    <div class="center-glow" aria-hidden="true"></div>
+    <canvas id="snow" aria-hidden="true"></canvas>
+
+    <h1 class="title" aria-label="冬将至，我与你">
+      <span>冬</span><span>将</span><span>至</span>
+      <span class="gap">我</span><span>与</span><span>你</span>
+    </h1>
+
+    <p class="caption">冬至降临　平安喜乐　祝我祝你祝我们</p>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("snow");
+    const ctx = canvas.getContext("2d");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let width = 0;
+    let height = 0;
+    let ratio = 1;
+    let snowflakes = [];
+    let borderFlakes = [];
+    let animationFrame = 0;
+
+    function makeBorderFlakes() {
+      const flakes = [];
+
+      function addGroup(edge, count) {
+        for (let i = 0; i < count; i++) {
+          let x;
+          let y;
+
+          if (edge === "top") {
+            x = Math.random() * width;
+            y = Math.random() * height * .13;
+          } else if (edge === "bottom") {
+            x = Math.random() * width;
+            y = height - Math.random() * height * .13;
+          } else if (edge === "left") {
+            x = Math.random() * width * .11;
+            y = Math.random() * height;
+          } else {
+            x = width - Math.random() * width * .11;
+            y = Math.random() * height;
+          }
+
+          const large = Math.random() > .72;
+          flakes.push({
+            x: x,
+            y: y,
+            size: large ? 13 + Math.random() * 28 : 5 + Math.random() * 18,
+            alpha: .12 + Math.random() * .34,
+            blur: large ? 3 + Math.random() * 7 : Math.random() * 3,
+            angle: Math.random() * Math.PI
+          });
+        }
+      }
+
+      addGroup("top", 38);
+      addGroup("bottom", 38);
+      addGroup("left", 24);
+      addGroup("right", 24);
+      return flakes;
+    }
+
+    function drawSnowflake(x, y, size, alpha, blur, angle) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.strokeStyle = "rgba(235, 238, 240, " + alpha + ")";
+      ctx.lineWidth = Math.max(.65, size * .035);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.shadowColor = "rgba(255, 255, 255, " + (alpha * .8) + ")";
+      ctx.shadowBlur = blur;
+
+      for (let arm = 0; arm < 6; arm++) {
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, -size);
+
+        ctx.moveTo(0, -size * .42);
+        ctx.lineTo(-size * .19, -size * .61);
+        ctx.moveTo(0, -size * .42);
+        ctx.lineTo(size * .19, -size * .61);
+
+        ctx.moveTo(0, -size * .66);
+        ctx.lineTo(-size * .15, -size * .81);
+        ctx.moveTo(0, -size * .66);
+        ctx.lineTo(size * .15, -size * .81);
+
+        ctx.stroke();
+        ctx.rotate(Math.PI / 3);
+      }
+
+      ctx.restore();
+    }
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+      const count = Math.min(480, Math.max(130, Math.round(width * height / 7000)));
+      snowflakes = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: .35 + Math.random() * 1.6,
+        speed: .18 + Math.random() * .85,
+        drift: (Math.random() - .5) * .35,
+        alpha: .18 + Math.random() * .65,
+        blur: Math.random() > .82 ? 2 + Math.random() * 3 : 0
+      }));
+
+      borderFlakes = makeBorderFlakes();
+      draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (const flake of borderFlakes) {
+        drawSnowflake(flake.x, flake.y, flake.size, flake.alpha, flake.blur, flake.angle);
+      }
+
+      for (const flake of snowflakes) {
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(245, 245, 245, " + flake.alpha + ")";
+        ctx.shadowColor = "rgba(255, 255, 255, " + (flake.alpha * .8) + ")";
+        ctx.shadowBlur = flake.blur;
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (!reducedMotion) {
+          flake.y += flake.speed;
+          flake.x += flake.drift + Math.sin((flake.x + flake.y) / 52) * .16;
+
+          if (flake.y > height + 3) {
+            flake.y = -3;
+            flake.x = Math.random() * width;
+          }
+
+          if (flake.x < -3) flake.x = width + 3;
+          if (flake.x > width + 3) flake.x = -3;
+        }
+      }
+
+      ctx.shadowBlur = 0;
+
+      if (!reducedMotion) {
+        animationFrame = requestAnimationFrame(draw);
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(animationFrame);
+      resize();
+    }, { passive: true });
+
+    resize();
+  </script>
+</body>
+</html>
